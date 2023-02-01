@@ -1,0 +1,224 @@
+<simulation>
+
+  <archetypes>
+    <spec> <lib>cycamore</lib> <name>Source</name> </spec>
+    <spec> <lib>cycamore</lib> <name>Sink</name> </spec>
+    <spec> <lib>cycamore</lib> <name>Storage</name> </spec>
+    <spec> <lib>cycamore</lib> <name>Source</name> </spec>
+
+  <commodity>
+    <name>raw_pizza</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>cooked_pizza</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>dough</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>shredded_cheese</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>sauce</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>water</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>yeast</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>salt</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>flour</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>block_cheese</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>cut_pizza</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+
+  <facility>
+    <name>DinnerTable</name>
+    <config>
+      <Sink>
+        <in_commods>cut_pizza</in_commods>
+      </Sink>
+    </config>
+  </facility>
+
+  <facility>
+    <name>CheeseStore</name>
+    <config>
+      <Source>
+        <outcommod>block_cheese</outcommod>
+      </Source>
+    </config>
+  </facility>
+  <facility>
+    <name>FlourStore</name>
+    <config>
+      <Source>
+        <outcommod>flour</outcommod>
+      </Source>
+    </config>
+  </facility>
+  <facility>
+    <name>YeastStore</name>
+    <config>
+      <Source>
+        <outcommod>yeast</outcommod>
+      </Source>
+    </config>
+  </facility>
+  <facility>
+    <name>SaltStore</name>
+    <config>
+      <Source>
+        <outcommod>salt</outcommod>
+      </Source>
+    </config>
+  </facility>
+  <facility>
+    <name>SauceStore</name>
+    <config>
+      <Source>
+        <outcommod>sauce</outcommod>
+      </Source>
+    </config>
+  </facility>
+  <facility>
+    <name>Faucet</name>
+    <config>
+      <Source>
+        <outcommod>water</outcommod>
+      </Source>
+    </config>
+  </facility>
+
+  <facility>
+    <name>Oven</name>
+    <config>
+      <Storage>
+      <in_commods>
+        <val>raw_pizza</val>
+      </in_commods>
+      <out_commods>
+        <val>cooked_pizza</val>
+      </outcommod>
+      <residence_time>1</residence_time>
+      </Source>
+    </config>
+  </facility>
+  <facility>
+    <name>PizzaStone</name>
+    <config>
+      <Storage>
+      <in_commods>
+        <val>dough</val>
+        <val>sauce</val>
+        <val>shredded_cheese</val>
+      </in_commods>
+      <out_commods>
+        <val>raw_pizza</val>
+      </outcommod>
+      <residence_time>1</residence_time>
+      </Source>
+    </config>
+  </facility>
+  <facility>
+    <name>MixingBowl</name>
+    <config>
+      <Storage>
+      <in_commods>
+        <val>water</val>
+        <val>yeast</val>
+        <val>salt</val>
+        <val>flour</val>
+      </in_commods>
+      <out_commods>
+        <val>dough</val>
+      </outcommod>
+      <residence_time>1</residence_time>
+      </Source>
+    </config>
+  </facility>
+  <facility>
+    <name>CheeseGrater</name>
+    <config>
+      <Storage>
+      <in_commods>
+        <val>block_cheese</val>
+      </in_commods>
+      <out_commods>
+        <val>shredded_cheese</val>
+      </outcommod>
+      <residence_time>1</residence_time>
+      </Source>
+    </config>
+  </facility>
+
+  <facility>
+    <name>CuttingBoard</name>
+    <config>
+      <Storage>
+      <in_commods>
+        <val>cooked_pizza</val>
+      </in_commods>
+      <out_commods>
+        <val>cut_pizza</val>
+      </outcommod>
+      <residence_time>1</residence_time>
+      </Source>
+    </config>
+  </facility>
+
+</simulation>
+
+Making pizza!
+need dough, yeast, salt, water, sauce, oven, cheese
+start with raw ingredients 
+
+Oven, Pizza stone, mixing bowl, cutting board, 
+grocery store, Knife, Sink for water
+
+Oven:
+- in: raw pizza
+- out: cooked pizza
+
+Pizza stone:
+- in: dough, sauce, shredded cheese
+- out: raw pizza
+
+Mixing Bowl:
+- in: water, yeast, salt, flour
+- out: dough
+
+Cheese grater:
+-in: block of cheese
+-out: shredded cheese
+
+Grocery Store:
+- in: N/A, source
+- out: block of cheese, flour, yeast, salt,  sauce
+
+Cutting Board:
+- in: cooked pizza
+- out: cut pizza 
+
+Sink:
+- in: N/A, source
+- water
