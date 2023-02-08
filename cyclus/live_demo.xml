@@ -13,6 +13,7 @@
     <spec> <lib>cycamore</lib> <name>Storage</name> </spec>
     <spec> <lib>cycamore</lib> <name>GrowthRegion</name> </spec>
     <spec> <lib>cycamore</lib> <name>ManagerInst</name> </spec>
+  </archetypes>
 
   <commodity>
     <name>raw_pizza</name>
@@ -63,7 +64,9 @@
     <name>DinnerTable</name>
     <config>
       <Sink>
-        <in_commods>cut_pizza</in_commods>
+	      <in_commods>
+		      <val>cut_pizza</val>
+	      </in_commods>
       </Sink>
     </config>
   </facility>
@@ -126,9 +129,9 @@
       </in_commods>
       <out_commods>
         <val>cooked_pizza</val>
-      </outcommod>
+      </out_commods>
       <residence_time>4</residence_time>
-      </Source>
+      </Storage>
     </config>
   </facility>
   <facility>
@@ -142,9 +145,9 @@
       </in_commods>
       <out_commods>
         <val>raw_pizza</val>
-      </outcommod>
+      </out_commods>
       <residence_time>1</residence_time>
-      </Source>
+      </Storage>
     </config>
   </facility>
   <facility>
@@ -159,9 +162,9 @@
       </in_commods>
       <out_commods>
         <val>dough</val>
-      </outcommod>
+      </out_commods>
       <residence_time>1</residence_time>
-      </Source>
+      </Storage>
     </config>
   </facility>
   <facility>
@@ -173,9 +176,9 @@
       </in_commods>
       <out_commods>
         <val>shredded_cheese</val>
-      </outcommod>
+      </out_commods>
       <residence_time>1</residence_time>
-      </Source>
+      </Storage>
     </config>
   </facility>
 
@@ -188,9 +191,9 @@
       </in_commods>
       <out_commods>
         <val>cut_pizza</val>
-      </outcommod>
+      </out_commods>
       <residence_time>1</residence_time>
-      </Source>
+      </Storage>
     </config>
   </facility>
 
@@ -222,14 +225,15 @@
     </GrowthRegion>
   </config>
 
-  <instituition>
-   <config>
+  <institution>
    <name>DeployCuttingBoard</name>
+   <config>
      <ManagerInst>
        <prototypes>
          <val>CuttingBoard</val>
        </prototypes>
      </ManagerInst>
+     </config>
      <initialfacilitylist>
         <entry>
           <prototype>DinnerTable</prototype>
