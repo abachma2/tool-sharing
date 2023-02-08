@@ -1,10 +1,18 @@
 <simulation>
 
+  <control>
+    <duration>540</duration>
+    <startmonth>1</startmonth>
+    <startyear>2023</startyear>
+    <decay>never</decay>
+  </control>
+
   <archetypes>
     <spec> <lib>cycamore</lib> <name>Source</name> </spec>
     <spec> <lib>cycamore</lib> <name>Sink</name> </spec>
     <spec> <lib>cycamore</lib> <name>Storage</name> </spec>
-    <spec> <lib>cycamore</lib> <name>Source</name> </spec>
+    <spec> <lib>cycamore</lib> <name>GrowthRegion</name> </spec>
+    <spec> <lib>cycamore</lib> <name>ManagerInst</name> </spec>
 
   <commodity>
     <name>raw_pizza</name>
@@ -119,7 +127,7 @@
       <out_commods>
         <val>cooked_pizza</val>
       </outcommod>
-      <residence_time>1</residence_time>
+      <residence_time>4</residence_time>
       </Source>
     </config>
   </facility>
@@ -186,39 +194,88 @@
     </config>
   </facility>
 
+  <region>
+  <name>Region</name>
+  <config>
+    <GrowthRegion>
+      <growth>
+        <item>
+          <commod>cut_pizza</commod>
+          <piecewise_function>
+            <piece>
+              <start>0</start>
+              <function>
+                <type>linear</type>
+                <params>8 0</params>
+              </function> 
+            </piece>
+            <piece>
+              <start>42</start>
+              <function>
+                <type>linear</type>
+                <params>0 300</params>
+              </function>
+            </piece>
+          </piecewise_function>
+        </item>
+      </growth> 
+    </GrowthRegion>
+  </config>
+
+  <instituition>
+   <config>
+   <name>DeployCuttingBoard</name>
+     <ManagerInst>
+       <prototypes>
+         <val>CuttingBoard</val>
+       </prototypes>
+     </ManagerInst>
+     <initialfacilitylist>
+        <entry>
+          <prototype>DinnerTable</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>CheeseStore</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>FlourStore</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>YeastStore</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>SaltStore</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>SauceStore</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>Faucet</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>Oven</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>PizzaStone</prototype>
+          <number>1</number>
+        </entry><entry>
+          <prototype>MixingBowl</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>CheeseGrater</prototype>
+          <number>1</number>
+        </entry>
+      </initialfacilitylist>
+    </institution>
+  </region>
+
 </simulation>
-
-Making pizza!
-need dough, yeast, salt, water, sauce, oven, cheese
-start with raw ingredients 
-
-Oven, Pizza stone, mixing bowl, cutting board, 
-grocery store, Knife, Sink for water
-
-Oven:
-- in: raw pizza
-- out: cooked pizza
-
-Pizza stone:
-- in: dough, sauce, shredded cheese
-- out: raw pizza
-
-Mixing Bowl:
-- in: water, yeast, salt, flour
-- out: dough
-
-Cheese grater:
--in: block of cheese
--out: shredded cheese
-
-Grocery Store:
-- in: N/A, source
-- out: block of cheese, flour, yeast, salt,  sauce
-
-Cutting Board:
-- in: cooked pizza
-- out: cut pizza 
-
-Sink:
-- in: N/A, source
-- water
